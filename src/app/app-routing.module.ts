@@ -17,6 +17,11 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
   },
+  {
+    path: '**',
+    redirectTo: 'landing-page',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
