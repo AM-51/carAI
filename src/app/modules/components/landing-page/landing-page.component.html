@@ -1,0 +1,125 @@
+<div class="page-wrapper">
+  <div class="form-and-image-container">
+    <form [formGroup]="userForm" class="form-container">
+      <div class="form-row-container">
+        <mat-form-field>
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="fullName">
+          <mat-error *ngIf="userForm.get('fullName')?.errors?.['required']">
+            This field is required.
+          </mat-error>
+          <mat-error *ngIf="userForm.get('fullName')?.errors?.['minlength']">
+            Must be 3-30 characters.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender">{{ gender }}</mat-option>
+          </mat-select>
+          <mat-error>
+            This field is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row-container">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-error *ngIf="userForm.get('email')?.errors?.['required']">
+            This field is required.
+          </mat-error>
+          <mat-error *ngIf="userForm.get('email')?.errors?.['pattern']">
+            Email must be formatted correctly.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Motor type</mat-label>
+          <mat-select formControlName="motorType">
+            <mat-option *ngFor="let motorType of motorTypes" [value]="motorType">{{ motorType }}</mat-option>
+          </mat-select>
+          <mat-error>
+            This field is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row-container">
+        <mat-form-field>
+          <mat-label>List of hobbies</mat-label>
+          <mat-select formControlName="listOfHobbies" multiple>
+            <mat-option *ngFor="let hobby of hobbies" [value]="hobby">{{ hobby }}</mat-option>
+          </mat-select>
+          <mat-error>
+            This field is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Amount of seats</mat-label>
+          <mat-select formControlName="amountOfSeats">
+            <mat-option *ngFor="let seats of amountOfSeats" [value]="seats">{{ seats }}</mat-option>
+          </mat-select>
+          <mat-error>
+            This field is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row-container">
+        <mat-form-field>
+          <mat-label>Favorite color</mat-label>
+          <input matInput [ngxMatColorPicker]="colorPicker" formControlName="favoriteColor">
+          <ngx-mat-color-toggle class="color-picker-icon" matSuffix [for]="colorPicker"></ngx-mat-color-toggle>
+          <ngx-mat-color-picker #colorPicker></ngx-mat-color-picker>
+          <mat-error>
+            This field is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Birth date</mat-label>
+          <input matInput [matDatepicker]="datePicker" formControlName="birthDate"
+            [matDatepickerFilter]="filterFutureDate">
+          <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #datePicker startView="multi-year"></mat-datepicker>
+          <mat-error>
+            This field is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div formGroupName="locationDetails" class="form-row-container">
+        <mat-form-field>
+          <mat-label>Country</mat-label>
+          <input matInput formControlName="country">
+          <mat-error *ngIf="userForm.get('locationDetails.country')?.errors?.['required']">
+            This field is required.
+          </mat-error>
+          <mat-error *ngIf="userForm.get('locationDetails.country')?.errors?.['minlength']">
+            Must be 3-30 characters.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city">
+          <mat-error *ngIf="userForm.get('locationDetails.city')?.errors?.['required']">
+            This field is required.
+          </mat-error>
+          <mat-error *ngIf="userForm.get('locationDetails.city')?.errors?.['minlength']">
+            Must be 3-30 characters.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <button mat-raised-button type="submit" (click)="submitForm()" style="width: 100%;"
+        [disabled]="userForm.invalid">Submit</button>
+    </form>
+    <div class="background-image"></div>
+  </div>
+
+</div>

@@ -1,0 +1,8 @@
+<div class="header-container">
+  <div class="logo-container">
+    <img class="logo" src="assets/logos/car-logo.png" alt="logo" />
+  </div>
+  <div class="navigation-container">
+    <a *ngFor="let opt of navOptions" [routerLink]="opt.path" routerLinkActive="selected-link">{{ opt.title }}</a>
+  </div>
+</div>

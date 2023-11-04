@@ -1,0 +1,64 @@
+<div class="page-wrapper">
+  <div class="title-container">
+    <span>
+      Dashboard
+    </span>
+  </div>
+  <div class="cards-wrapper">
+    <div class="card-wrapper">
+      <span>Visitors vs Completed</span>
+      <div class="chart-card-container">
+        <app-percent-chart [chartSeries]="completedSeries" [chartLabels]="completedChartLabels"></app-percent-chart>
+      </div>
+    </div>
+
+    <div class="card-wrapper">
+      <span>Most popular number of seats</span>
+      <div class="chart-card-container">
+        <app-pie-chart *ngIf="this.users.length > 0" [chartSeries]="seatsSeries"
+          [chartLabels]="seatsChartLabels"></app-pie-chart>
+        <span *ngIf="this.users.length === 0" class="no-data">No Data</span>
+      </div>
+    </div>
+
+    <div class="card-wrapper">
+      <span>Preferred engine type</span>
+      <div class="chart-card-container">
+        <app-radial-chart [chartSeries]="motorSeries" [chartLabels]="motorChartLabels"></app-radial-chart>
+      </div>
+    </div>
+
+    <div class="card-wrapper">
+      <span>Most popular hobby</span>
+      <div class="chart-card-container">
+        <app-bar-chart *ngIf="this.users.length > 0" [chartSeries]="hobbiesSeries"></app-bar-chart>
+        <span *ngIf="this.users.length === 0" class="no-data">No Data</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="table-container">
+    <span>Engine type by gender</span>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="electric">
+        <th mat-header-cell *matHeaderCellDef> Electric </th>
+        <td mat-cell *matCellDef="let element"> {{element.Electric}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fuel">
+        <th mat-header-cell *matHeaderCellDef> Fuel </th>
+        <td mat-cell *matCellDef="let element"> {{element.Fuel}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+</div>
